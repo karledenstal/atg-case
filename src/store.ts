@@ -24,6 +24,7 @@ export const setupStore = (preloadedState?: PreloadedState<RootState>) =>
 
 export const store = setupStore()
 
+export type AppStore = ReturnType<typeof setupStore>
 export type AppDispatch = typeof store.dispatch
 export const useAppDispatch = () => useDispatch<AppDispatch>()
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
