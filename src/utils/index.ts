@@ -1,1 +1,1 @@
-export const timeFormat = "HH:mm"
+export const timeFormat = 'HH:mm'
