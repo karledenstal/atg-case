@@ -1,6 +1,8 @@
 import { screen, fireEvent } from '@testing-library/react'
 import { renderWithProviders } from './test-utils'
 import App from './App'
+import { server } from './mocks/api/server'
+import { rest } from 'msw'
 
 describe('App', () => {
   it('should verify products exist', async () => {
@@ -68,5 +70,50 @@ describe('App', () => {
 
     const trainerLabel = await screen.findByText(/Tränare/i)
     expect(trainerLabel).toBeInTheDocument()
+  })
+
+  it('should handle errors when fetching products', async () => {
+    renderWithProviders(<App />)
+    const productV75 = screen.getByText('V75')
+
+    fireEvent.click(productV75)
+
+    server.use(
+      rest.get(
+        'https://www.atg.se/services/racinginfo/v1/api/products/*',
+        (_, res, ctx) => {
+          return res(ctx.status(500))
+        },
+      ),
+    )
+
+    const errormsg = await screen.findByText('Oops, something went wrong')
+    expect(errormsg).toBeInTheDocument()
+  })
+
+  it('should handle error when fetching races', async () => {
+    renderWithProviders(<App />)
+    const productV75 = screen.getByText('V75')
+
+    fireEvent.click(productV75)
+
+    screen.getByText('Loading...')
+
+    const heading = await screen.findByText(/Charlottenlund/i)
+    expect(heading).toBeInTheDocument()
+
+    fireEvent.click(heading)
+
+    server.use(
+      rest.get(
+        'https://www.atg.se/services/racinginfo/v1/api/games/*',
+        (_, res, ctx) => {
+          return res(ctx.status(500))
+        },
+      ),
+    )
+
+    const errorMsg = await screen.findByText('Oops, something went wrong')
+    expect(errorMsg).toBeInTheDocument()
   })
 })

@@ -10,7 +10,7 @@ type ProductAccordionProps = {
 
 export const ProductAccordion = ({ product }: ProductAccordionProps) => {
   const [isExpanded, setIsExpanded] = useState(false)
-  const [fetchResults, { isFetching, data }] = useLazyGetProductQuery()
+  const [fetchResults, { isFetching, data, isError }] = useLazyGetProductQuery()
 
   const onToggle = () => {
     setIsExpanded((s) => !s)
@@ -20,6 +20,8 @@ export const ProductAccordion = ({ product }: ProductAccordionProps) => {
   }
 
   const renderResults = () => {
+    if (isError) return "Oops, something went wrong"
+    if (isFetching) return 'Loading...'
     if (!data) return 'No results found'
     
     return data?.map(({ id, startTime, tracks }) => (
@@ -43,7 +45,7 @@ export const ProductAccordion = ({ product }: ProductAccordionProps) => {
           {renderChevron()}
         </h2>
       </div>
-      {isExpanded && <>{!isFetching ? renderResults() : 'Loading...'}</>}
+      {isExpanded && renderResults()}
     </>
   )
 }

@@ -12,6 +12,7 @@ export const StartInfo = ({ number, horse, driver }: StartInfoProps) => {
   const [showTrainerInfo, setShowTrainerInfo] = useState(false)
 
   const driverFullName = `${driver.firstName} ${driver.lastName}`
+  const trainerFullName = `${horse.trainer.firstName} ${horse.trainer.lastName}`
 
   return (
     <div className="p-4 pb-0">
@@ -25,10 +26,7 @@ export const StartInfo = ({ number, horse, driver }: StartInfoProps) => {
       </h5>
       {showTrainerInfo && (
         <div className="p-2">
-          <Detail
-            label="Tränare"
-            value={`${horse.trainer.firstName} ${horse.trainer.lastName}`}
-          />
+          <Detail label="Tränare" value={trainerFullName} />
           <Detail label="Far" value={horse.pedigree.father.name} />
         </div>
       )}

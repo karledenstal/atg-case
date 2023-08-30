@@ -17,13 +17,29 @@ export const ResultAccordion = ({
   tracks,
 }: ResultAccordionProps) => {
   const [displayRace, setDisplayRace] = useState(false)
-  const [fetchRaces, { data, isFetching }] = useLazyGetGameQuery()
+  const [fetchRaces, { data, isFetching, isError }] = useLazyGetGameQuery()
 
   const onToggle = () => {
     setDisplayRace((s) => !s)
 
     if (displayRace) return
     fetchRaces(id)
+  }
+
+  const displayRaces = () => {
+    if (isError) return 'Oops, something went wrong'
+    if (isFetching) return 'Loading...'
+    if (!data) return 'No races found'
+
+    return data?.map(({ number, starts, startTime, name }) => (
+      <RaceInfo
+        key={number}
+        number={number}
+        name={name}
+        startTime={startTime}
+        starts={starts}
+      />
+    ))
   }
 
   return (
@@ -42,18 +58,7 @@ export const ResultAccordion = ({
         ))}
         - {format(new Date(startTime), timeFormat)}
       </h3>
-      {displayRace &&
-        (!isFetching
-          ? data?.map(({ number, starts, startTime, name }) => (
-              <RaceInfo
-                key={number}
-                number={number}
-                name={name}
-                startTime={startTime}
-                starts={starts}
-              />
-            ))
-          : 'Loading...')}
+      {displayRace && displayRaces()}
     </div>
   )
 }
