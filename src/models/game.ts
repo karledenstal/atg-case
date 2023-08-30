@@ -9,20 +9,8 @@ export interface Race {
   date: string
   number: number
   name: string
-  distance: number
-  startMethod: StartMethod
   startTime: string
-  scheduledStartTime: string
-  prize: string
-  terms: string[]
-  sport: string
-  track: Track
-  result: RaceResult
-  status: string
-  mediaId: string
-  pools: RacePools
   starts: Start[]
-  mergedPools: MergedPool[]
 }
 
 export interface MergedPool {
@@ -81,7 +69,7 @@ export interface PurplePlats {
   status: string
   timestamp: string
   turnover: number
-  result: PlatsResult
+  result?: PlatsResult
 }
 
 export interface PlatsResult {
@@ -106,7 +94,7 @@ export interface PurpleVinnare {
   status: string
   timestamp: string
   turnover: number
-  result: VinnareResult
+  result?: VinnareResult
 }
 
 export interface VinnareResult {
@@ -114,45 +102,21 @@ export interface VinnareResult {
   winners: PurpleWinner[]
 }
 
-export interface RaceResult {}
-
-export enum StartMethod {
-  Auto = 'auto',
-  Volte = 'volte',
-}
-
 export interface Start {
   number: number
-  postPosition: number
-  distance: number
   horse: Horse
   driver: Driver
-  result: StartResult
-  pools: StartPools
-  videos?: Video[]
 }
 
 export interface Driver {
-  id?: number
   firstName: string
   lastName: string
-  shortName: string
-  license: License
-  silks?: string
-  statistics?: DriverStatistics
-  location?: string
-  birth?: number
-  homeTrack?: HomeTrack
 }
 
 export interface HomeTrack {
   id?: number
   name: string
-}
-
-export enum License {
-  ATränareTränaKöra = 'A-tränare: träna, köra',
-  Okänd = 'Okänd',
+  location?: string
 }
 
 export interface DriverStatistics {
@@ -168,24 +132,11 @@ export interface Year {
 }
 
 export interface YearRecord {
-  code: Code
-  startMethod: StartMethod
-  distance: Distance
+  code: string
+  startMethod: string
+  distance: string
   time: Time
   place?: number
-}
-
-export enum Code {
-  AK = 'aK',
-  AM = 'aM',
-  L = 'L',
-  M = 'M',
-}
-
-export enum Distance {
-  Long = 'long',
-  Medium = 'medium',
-  Short = 'short',
 }
 
 export interface Time {
@@ -196,31 +147,17 @@ export interface Time {
 
 export interface Horse {
   name: string
-  nationality?: string
-  age: number
-  sex: string
-  record?: YearRecord
   trainer: Driver
-  shoes: Shoes
-  sulky: Sulky
-  money: number
-  color: string
-  owner: HomeTrack
-  statistics: HorseStatistics
   pedigree: Pedigree
-  foreignOwned?: boolean
-  id?: number
-  homeTrack?: HomeTrack
-  breeder?: HomeTrack
 }
 
 export interface Pedigree {
-  father: Father
-  mother: HomeTrack
-  grandfather: Father
+  father: PedigreeChild
+  mother: PedigreeChild
+  grandfather?: PedigreeChild
 }
 
-export interface Father {
+export interface PedigreeChild {
   name: string
   id?: number
   nationality?: string
@@ -259,8 +196,8 @@ export interface Life {
 
 export interface LifeRecord {
   code: string
-  startMethod: StartMethod
-  distance: Distance
+  startMethod: string
+  distance: string
   time: Time
   place: number
   year: string
@@ -269,6 +206,7 @@ export interface LifeRecord {
 export interface Sulky {
   reported: boolean
   type: Type
+  colour?: Type
 }
 
 export interface Type {

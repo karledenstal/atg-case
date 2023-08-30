@@ -17,8 +17,6 @@ export const ProductAccordion = ({ product }: ProductAccordionProps) => {
     fetchResults(product)
   }
 
-  console.log('data', data)
-
   const renderResults = () => {
     if (!data) return 'No results found'
     return data?.map(({ id, startTime, tracks }) => (
