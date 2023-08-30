@@ -17,10 +17,12 @@ export const ProductAccordion = ({ product }: ProductAccordionProps) => {
     fetchResults(product)
   }
 
+  console.log('data', data)
+
   const renderResults = () => {
     if (!data) return 'No results found'
     return data?.map(({ id, startTime, tracks }) => (
-      <ResultAccordion id={id} startTime={startTime} tracks={tracks} />
+      <ResultAccordion key={id} id={id} startTime={startTime} tracks={tracks} />
     ))
   }
 

@@ -1,8 +1,8 @@
 import '@testing-library/jest-dom'
+import 'whatwg-fetch'
 import { server } from './mocks/api/server'
 import { racingInfoApi } from './api/racingInfoApi'
 import { setupStore } from './store'
-import { beforeAll, afterEach, afterAll } from 'vitest'
 
 const store = setupStore({})
 
