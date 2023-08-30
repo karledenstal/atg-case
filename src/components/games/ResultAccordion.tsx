@@ -1,9 +1,9 @@
 import format from 'date-fns/format'
 import { Track } from '../../models/product'
-import { useLazyGetGameQuery } from '../../api/racingInfoApi'
 import { RaceInfo } from './RaceInfo'
 import { useState } from 'react'
 import { timeFormat } from '../../utils'
+import { useLazyGetGameQuery } from '../../api/gameApi'
 
 type ResultAccordionProps = {
   id: string

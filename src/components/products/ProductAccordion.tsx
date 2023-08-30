@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { useLazyGetProductQuery } from '../../api/racingInfoApi'
 import { BettingType } from '../../models/product'
 import { ResultAccordion } from '../games/ResultAccordion'
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/solid'
+import { useLazyGetProductQuery } from '../../api/productApi'
 
 type ProductAccordionProps = {
   product: BettingType
@@ -20,10 +20,10 @@ export const ProductAccordion = ({ product }: ProductAccordionProps) => {
   }
 
   const renderResults = () => {
-    if (isError) return "Oops, something went wrong"
+    if (isError) return 'Oops, something went wrong'
     if (isFetching) return 'Loading...'
     if (!data) return 'No results found'
-    
+
     return data?.map(({ id, startTime, tracks }) => (
       <ResultAccordion key={id} id={id} startTime={startTime} tracks={tracks} />
     ))
