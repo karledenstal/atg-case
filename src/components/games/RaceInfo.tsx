@@ -30,20 +30,17 @@ export const RaceInfo = ({
         <span className="mr-1">
           {number} - {name ?? 'Okänt namn'}
         </span>
-        <span>- {format(new Date(startTime), timeFormat)}</span>
+        - {format(new Date(startTime), timeFormat)}
       </h4>
-      {showStarts && (
-        <div>
-          {starts.map(({ horse, driver, number }) => (
-            <StartInfo
-              key={number}
-              number={number}
-              driver={driver}
-              horse={horse}
-            />
-          ))}
-        </div>
-      )}
+      {showStarts &&
+        starts.map(({ horse, driver, number }) => (
+          <StartInfo
+            key={number}
+            number={number}
+            driver={driver}
+            horse={horse}
+          />
+        ))}
     </>
   )
 }

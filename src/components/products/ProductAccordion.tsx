@@ -21,6 +21,7 @@ export const ProductAccordion = ({ product }: ProductAccordionProps) => {
 
   const renderResults = () => {
     if (!data) return 'No results found'
+    
     return data?.map(({ id, startTime, tracks }) => (
       <ResultAccordion key={id} id={id} startTime={startTime} tracks={tracks} />
     ))

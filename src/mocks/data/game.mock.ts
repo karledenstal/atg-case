@@ -6,7 +6,7 @@ export const raceMock: GameResponse = {
   races: [
     {
       id: '2023-09-02_7_5',
-      name: "John Scott's - STL Stoeliten, Försök 11 (Final Solvalla 26 december)",
+      name: "Testlopp",
       date: '2023-09-02',
       number: 5,
       startTime: '2023-09-02T16:20:00',
@@ -18,7 +18,7 @@ export const raceMock: GameResponse = {
             lastName: 'Kontio',
           },
           horse: {
-            name: 'B.W.L.Chili',
+            name: 'Chili',
             trainer: {
               firstName: 'Jörgen',
               lastName: 'Westholm',

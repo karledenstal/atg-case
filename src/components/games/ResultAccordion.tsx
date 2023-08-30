@@ -33,30 +33,27 @@ export const ResultAccordion = ({
         className="p-2 border-0 border-b-slate-300 border-b-2 cursor-pointer text-2xl font-semibold"
       >
         {tracks?.map((track) => (
-          <span className="inline-block mr-1 after:content-[','] last-of-type:after:content-['']">
+          <span
+            key={track.id}
+            className="inline-block mr-1 after:content-[','] last-of-type:after:content-['']"
+          >
             {track.name}
           </span>
         ))}
         - {format(new Date(startTime), timeFormat)}
       </h3>
-      {displayRace && (
-        <div className="">
-          {!isFetching ? (
-            <>
-              {data?.map(({ number, starts, startTime, name }) => (
-                <RaceInfo
-                  number={number}
-                  name={name}
-                  startTime={startTime}
-                  starts={starts}
-                />
-              ))}
-            </>
-          ) : (
-            'Loading...'
-          )}
-        </div>
-      )}
+      {displayRace &&
+        (!isFetching
+          ? data?.map(({ number, starts, startTime, name }) => (
+              <RaceInfo
+                key={number}
+                number={number}
+                name={name}
+                startTime={startTime}
+                starts={starts}
+              />
+            ))
+          : 'Loading...')}
     </div>
   )
 }

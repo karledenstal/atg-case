@@ -23,7 +23,7 @@ describe('App', () => {
 
     screen.getByText('Loading...')
 
-    const heading = await screen.findByText(/Charlottenlund/gi)
+    const heading = await screen.findByText(/Charlottenlund/i)
     expect(heading).toBeInTheDocument()
   })
 
@@ -35,14 +35,14 @@ describe('App', () => {
 
     screen.getByText('Loading...')
 
-    const heading = await screen.findByText(/Charlottenlund/gi)
+    const heading = await screen.findByText(/Charlottenlund/i)
     expect(heading).toBeInTheDocument()
 
     fireEvent.click(heading)
 
     screen.getByText('Loading...')
 
-    const raceTitle = await screen.findByText(/Okänt namn/gi)
+    const raceTitle = await screen.findByText(/Testlopp/i)
     expect(raceTitle).toBeInTheDocument()
   })
 
@@ -54,19 +54,19 @@ describe('App', () => {
 
     screen.getByText('Loading...')
 
-    const heading = await screen.findByText(/Charlottenlund/gi)
+    const heading = await screen.findByText(/Charlottenlund/i)
 
     fireEvent.click(heading)
 
-    const raceTitle = await screen.findByText(/Okänt namn/gi)
+    const raceTitle = await screen.findByText(/Testlopp/i)
 
     fireEvent.click(raceTitle)
-    const startName = await screen.findByText(/Peakadilly/gi)
+    const startName = await screen.findByText(/Chili/i)
     expect(startName).toBeInTheDocument()
 
     fireEvent.click(startName)
 
-    const trainerLabel = await screen.findByText(/Tränare/gi)
+    const trainerLabel = await screen.findByText(/Tränare/i)
     expect(trainerLabel).toBeInTheDocument()
   })
 })

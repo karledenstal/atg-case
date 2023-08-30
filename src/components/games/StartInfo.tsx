@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Driver, Horse } from '../../models/game'
+import { Detail } from './Detail'
 
 type StartInfoProps = {
   number: number
@@ -10,6 +11,8 @@ type StartInfoProps = {
 export const StartInfo = ({ number, horse, driver }: StartInfoProps) => {
   const [showTrainerInfo, setShowTrainerInfo] = useState(false)
 
+  const driverFullName = `${driver.firstName} ${driver.lastName}`
+
   return (
     <div className="p-4 pb-0">
       <h5
@@ -18,18 +21,15 @@ export const StartInfo = ({ number, horse, driver }: StartInfoProps) => {
         }`}
         onClick={() => setShowTrainerInfo((s) => !s)}
       >
-        {number} - {horse.name} - {driver.firstName} {driver.lastName}
+        {number} - {horse.name} - {driverFullName}
       </h5>
       {showTrainerInfo && (
         <div className="p-2">
-          <p>
-            <strong className="font-semibold">Tränare:</strong>{' '}
-            {horse.trainer.firstName} {horse.trainer.lastName}
-          </p>
-          <p>
-            <strong className="font-semibold">Far:</strong>{' '}
-            {horse.pedigree.father.name}
-          </p>
+          <Detail
+            label="Tränare"
+            value={`${horse.trainer.firstName} ${horse.trainer.lastName}`}
+          />
+          <Detail label="Far" value={horse.pedigree.father.name} />
         </div>
       )}
     </div>
