@@ -16,5 +16,4 @@ export const resultMock: ProductResponse = {
       addOns: ['boost'],
     },
   ],
-  upcoming: [],
 }
