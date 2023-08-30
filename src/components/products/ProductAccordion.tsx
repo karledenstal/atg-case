@@ -40,7 +40,7 @@ export const ProductAccordion = ({ product }: ProductAccordionProps) => {
           {renderChevron()}
         </h2>
       </div>
-      {isExpanded && <div>{!isFetching ? renderResults() : 'Loading...'}</div>}
+      {isExpanded && <>{!isFetching ? renderResults() : 'Loading...'}</>}
     </>
   )
 }

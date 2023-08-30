@@ -20,10 +20,10 @@ export const ResultAccordion = ({
   const { data, isFetching } = useGetGameQuery(id)
 
   return (
-    <div className="p-2">
+    <div className="mb-2">
       <h3
         onClick={() => setDisplayRace((s) => !s)}
-        className="cursor-pointer text-2xl font-semibold"
+        className="p-2 border-0 border-b-slate-300 border-b-2 cursor-pointer text-2xl font-semibold"
       >
         {tracks?.map((track) => (
           <span className="inline-block mr-1 after:content-[','] last-of-type:after:content-['']">
@@ -33,7 +33,7 @@ export const ResultAccordion = ({
         - {format(new Date(startTime), timeFormat)}
       </h3>
       {displayRace && (
-        <div>
+        <div className="">
           {!isFetching ? (
             <>
               {data?.map(({ number, starts, startTime, name }) => (

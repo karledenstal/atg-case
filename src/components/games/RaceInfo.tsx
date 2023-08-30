@@ -23,11 +23,11 @@ export const RaceInfo = ({
     <>
       <h4
         onClick={() => setShowStarts((s) => !s)}
-        className={`text-xl mb-2 border-l-0 border-t-0 border-r-0 border-b-blue-900 border-solid border-2 pt-2 cursor-pointer ${
+        className={`text-xl border-x-0 border-y-0 border-b-2 border-slate-300 border-solid p-2 cursor-pointer ${
           showStarts && 'font-semibold'
         }`}
       >
-        <span>
+        <span className="mr-1">
           {number} - {name ?? 'Okänt namn'}
         </span>
         <span>- {format(new Date(startTime), timeFormat)}</span>

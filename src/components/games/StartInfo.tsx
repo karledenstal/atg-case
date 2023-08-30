@@ -11,9 +11,9 @@ export const StartInfo = ({ number, horse, driver }: StartInfoProps) => {
   const [showTrainerInfo, setShowTrainerInfo] = useState(false)
 
   return (
-    <div className="p-2 pb-0">
+    <div className="p-4 pb-0">
       <h5
-        className={`cursor-pointer text-lg ${showTrainerInfo && 'font-semibold text-blue-900'}`}
+        className={`border-0 border-b-2 border-b-slate-300 cursor-pointer text-lg ${showTrainerInfo && 'font-semibold text-blue-900'}`}
         onClick={() => setShowTrainerInfo((s) => !s)}
       >
         {number} - {horse.name} - {driver.firstName} {driver.lastName}
