@@ -1,6 +1,7 @@
 import format from 'date-fns/format'
 import { Track } from '../../models/product'
 import { useGetGameQuery } from '../../api/racingInfoApi'
+import { RaceInfo } from './RaceInfo'
 
 type ResultAccordionProps = {
   id: string
@@ -25,29 +26,13 @@ export const ResultAccordion = ({
           <div>
             {!isFetching ? (
               <>
-                {data?.map((race) => (
-                  <>
-                    <h4 className="text-xl pt-2 font-semibold">
-                      {race.number} - {race.name} -{' '}
-                      {format(new Date(race.startTime), 'HH:mm')}
-                    </h4>
-                    <div>
-                      {race.starts.map((start) => (
-                        <>
-                          <h5>
-                            {start.number} - {start.horse.name} -{' '}
-                            {start.driver.firstName} {start.driver.lastName}
-                          </h5>
-                          <div>
-                            Tränare: {start.horse.trainer.firstName}{' '}
-                            {start.horse.trainer.lastName}
-                            <br />
-                            Far: {start.horse.pedigree.father.name}
-                          </div>
-                        </>
-                      ))}
-                    </div>
-                  </>
+                {data?.map(({ number, starts, startTime, name }) => (
+                  <RaceInfo
+                    number={number}
+                    name={name}
+                    startTime={startTime}
+                    starts={starts}
+                  />
                 ))}
               </>
             ) : (
