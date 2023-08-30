@@ -2,6 +2,7 @@ import format from 'date-fns/format'
 import { Start } from '../../models/game'
 import { StartInfo } from './StartInfo'
 import { useState } from 'react'
+import { timeFormat } from '../../utils'
 
 type RaceInfoProps = {
   number: number
@@ -26,8 +27,10 @@ export const RaceInfo = ({
           showStarts && 'font-semibold'
         }`}
       >
-        {number} - {name ? name : 'Okänt namn'} -
-        {format(new Date(startTime), 'HH:mm')}
+        <span>
+          {number} - {name ?? 'Okänt namn'}
+        </span>
+        <span>- {format(new Date(startTime), timeFormat)}</span>
       </h4>
       {showStarts && (
         <div>
