@@ -1,6 +1,6 @@
 import format from 'date-fns/format'
 import { Track } from '../../models/product'
-import { useGetGameQuery } from '../../api/racingInfoApi'
+import { useLazyGetGameQuery } from '../../api/racingInfoApi'
 import { RaceInfo } from './RaceInfo'
 import { useState } from 'react'
 import { timeFormat } from '../../utils'
@@ -17,12 +17,19 @@ export const ResultAccordion = ({
   tracks,
 }: ResultAccordionProps) => {
   const [displayRace, setDisplayRace] = useState(false)
-  const { data, isFetching } = useGetGameQuery(id)
+  const [fetchRaces, { data, isFetching }] = useLazyGetGameQuery()
+
+  const onToggle = () => {
+    setDisplayRace((s) => !s)
+
+    if (displayRace) return
+    fetchRaces(id)
+  }
 
   return (
     <div className="mb-2">
       <h3
-        onClick={() => setDisplayRace((s) => !s)}
+        onClick={onToggle}
         className="p-2 border-0 border-b-slate-300 border-b-2 cursor-pointer text-2xl font-semibold"
       >
         {tracks?.map((track) => (

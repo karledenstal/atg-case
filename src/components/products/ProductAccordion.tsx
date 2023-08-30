@@ -14,6 +14,8 @@ export const ProductAccordion = ({ product }: ProductAccordionProps) => {
 
   const onToggle = () => {
     setIsExpanded((s) => !s)
+
+    if (isExpanded) return
     fetchResults(product)
   }
 
