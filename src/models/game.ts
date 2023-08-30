@@ -12,24 +12,24 @@ export interface Race {
   startTime: string
   starts: Start[]
 }
-interface Start {
+export interface Start {
   number: number
   horse: Horse
   driver: Driver
 }
 
-interface Driver {
+export interface Driver {
   firstName: string
   lastName: string
 }
 
-interface Horse {
+export interface Horse {
   name: string
   trainer: Driver
   pedigree: Record<string, Pedigree>
 }
 
-interface Pedigree {
+export interface Pedigree {
   name: string
   id?: number
   nationality?: string
