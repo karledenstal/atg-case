@@ -19,7 +19,7 @@ export interface Result {
   addOns: string[]
 }
 
-interface Track {
+export interface Track {
   id: number
   name: string
 }
