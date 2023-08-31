@@ -42,6 +42,12 @@ Run the development server:
 npm run dev
 ```
 
+Build for production:
+
+```bash
+npm run build
+```
+
 ## Testing
 
 **Note:** Tests are definitely my weakest part. Set it up using `msw` and `vitest`, but I'm too unfamiliar with it to be confident in the tests. I worked in a red-green-refactor cycle, but I'm not sure if I'm testing the right things.
