@@ -5,7 +5,7 @@ type UseAccordionReturnType = {
   handleAccordionToggle: () => void
 }
 
-export const useAccordion = (): UseAccordionReturnType => {
+export const useAccordion: () => UseAccordionReturnType = () => {
   const [isExpanded, setIsExpanded] = useState(false)
 
   return {

@@ -1,11 +1,14 @@
 import { Provider } from 'react-redux'
-import ProductListing from './components/products/ProductListing'
 import { store } from './store'
+import { bettingTypes } from './models/product'
+import { ProductAccordion } from './components/products/ProductAccordion'
 
 function App() {
   return (
     <Provider store={store}>
-      <ProductListing />
+      {Object.values(bettingTypes).map((product) => (
+        <ProductAccordion key={product} product={product} />
+      ))}
     </Provider>
   )
 }
