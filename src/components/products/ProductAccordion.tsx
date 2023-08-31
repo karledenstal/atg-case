@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { BettingType } from '../../models/product'
 import { ResultAccordion } from '../games/ResultAccordion'
-import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/solid'
 import { useLazyGetProductQuery } from '../../api/productApi'
+import { ExpandIcon } from '../ExpandIcon'
 
 type ProductAccordionProps = {
   product: BettingType
@@ -29,11 +29,6 @@ export const ProductAccordion = ({ product }: ProductAccordionProps) => {
     ))
   }
 
-  const renderChevron = () => {
-    if (isExpanded) return <ChevronUpIcon className="inline-block w-6 h-6" />
-    return <ChevronDownIcon className="inline-block w-6 h-6" />
-  }
-
   return (
     <>
       <div className="p-2 mb-2 border-solid border-2 border-blue-900 cursor-pointer">
@@ -42,7 +37,7 @@ export const ProductAccordion = ({ product }: ProductAccordionProps) => {
           onClick={onToggle}
         >
           {product}
-          {renderChevron()}
+          <ExpandIcon isExpanded={isExpanded} />
         </h2>
       </div>
       {isExpanded && renderResults()}

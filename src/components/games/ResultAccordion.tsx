@@ -4,6 +4,7 @@ import { RaceInfo } from './RaceInfo'
 import { useState } from 'react'
 import { timeFormat } from '../../utils'
 import { useLazyGetGameQuery } from '../../api/gameApi'
+import { ExpandIcon } from '../ExpandIcon'
 
 type ResultAccordionProps = {
   id: string
@@ -46,17 +47,20 @@ export const ResultAccordion = ({
     <div className="mb-2">
       <h3
         onClick={onToggle}
-        className="p-2 border-0 border-b-slate-300 border-b-2 cursor-pointer text-2xl font-semibold"
+        className="p-2 border-0 border-b-slate-300 border-b-2 cursor-pointer text-2xl font-semibold flex items-center justify-between"
       >
-        {tracks?.map((track) => (
-          <span
-            key={track.id}
-            className="inline-block mr-1 after:content-[','] last-of-type:after:content-['']"
-          >
-            {track.name}
-          </span>
-        ))}
-        - {format(new Date(startTime), timeFormat)}
+        <div>
+          {tracks?.map((track) => (
+            <span
+              key={track.id}
+              className="inline-block mr-1 after:content-[','] last-of-type:after:content-['']"
+            >
+              {track.name}
+            </span>
+          ))}
+          - {format(new Date(startTime), timeFormat)}
+        </div>
+        <ExpandIcon isExpanded={displayRace} />
       </h3>
       {displayRace && displayRaces()}
     </div>
