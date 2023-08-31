@@ -21,10 +21,12 @@ Most technologies are self-explanatory, but I'll list them here.
 
 ### Justifications
 
+- Used Vite to bootstrap, because it's faster and more lightweight than CRA (CRA is also deprecated).
 - I used TailwindCSS to simplify the styling and use a robust design system. Since it tree-shakes, it won't bloat the bundle size.
 - I opted to use RTK Query to query the data. React query would work as well, but I like the syntax of RTK Query better + if redux is going to be used in the future, it's a no-brainer.
 - I used date-fns to simplify the date formatting. It's a very robust library that I've used in the past.
-
+- msw is used to intercept and return mock data as well as test error response.
+- vitest is used because it works better with vite than jest does. Also works similarly.
 
 ## Getting Started
 
