@@ -1,19 +1,19 @@
-import { useState } from 'react'
 import { BettingType } from '../../models/product'
 import { ResultAccordion } from '../games/ResultAccordion'
 import { useLazyGetProductQuery } from '../../api/productApi'
 import { ExpandIcon } from '../ExpandIcon'
+import { useAccordion } from '../../hooks/useAccordion'
 
 type ProductAccordionProps = {
   product: BettingType
 }
 
 export const ProductAccordion = ({ product }: ProductAccordionProps) => {
-  const [isExpanded, setIsExpanded] = useState(false)
   const [fetchResults, { isFetching, data, isError }] = useLazyGetProductQuery()
+  const { isExpanded, handleAccordionToggle } = useAccordion()
 
   const onToggle = () => {
-    setIsExpanded((s) => !s)
+    handleAccordionToggle()
 
     if (isExpanded) return
     fetchResults(product)

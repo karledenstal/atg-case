@@ -1,9 +1,9 @@
 import format from 'date-fns/format'
 import { Start } from '../../models/game'
 import { StartInfo } from './StartInfo'
-import { useState } from 'react'
 import { timeFormat } from '../../utils'
 import { ExpandIcon } from '../ExpandIcon'
+import { useAccordion } from '../../hooks/useAccordion'
 
 type RaceInfoProps = {
   number: number
@@ -18,14 +18,14 @@ export const RaceInfo = ({
   startTime,
   starts,
 }: RaceInfoProps) => {
-  const [showStarts, setShowStarts] = useState(false)
+  const { isExpanded, handleAccordionToggle } = useAccordion()
 
   return (
     <>
       <h4
-        onClick={() => setShowStarts((s) => !s)}
+        onClick={handleAccordionToggle}
         className={`flex items-center justify-between text-xl border-x-0 border-y-0 border-b-2 border-slate-300 border-solid p-2 cursor-pointer ${
-          showStarts && 'font-semibold'
+          isExpanded && 'font-semibold'
         }`}
       >
         <div>
@@ -34,9 +34,9 @@ export const RaceInfo = ({
           </span>
           - {format(new Date(startTime), timeFormat)}
         </div>
-        <ExpandIcon isExpanded={showStarts} />
+        <ExpandIcon isExpanded={isExpanded} />
       </h4>
-      {showStarts &&
+      {isExpanded &&
         starts.map(({ horse, driver, number }) => (
           <StartInfo
             key={number}

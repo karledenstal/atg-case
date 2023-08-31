@@ -1,10 +1,10 @@
 import format from 'date-fns/format'
 import { Track } from '../../models/product'
 import { RaceInfo } from './RaceInfo'
-import { useState } from 'react'
 import { timeFormat } from '../../utils'
 import { useLazyGetGameQuery } from '../../api/gameApi'
 import { ExpandIcon } from '../ExpandIcon'
+import { useAccordion } from '../../hooks/useAccordion'
 
 type ResultAccordionProps = {
   id: string
@@ -17,13 +17,13 @@ export const ResultAccordion = ({
   startTime,
   tracks,
 }: ResultAccordionProps) => {
-  const [displayRace, setDisplayRace] = useState(false)
   const [fetchRaces, { data, isFetching, isError }] = useLazyGetGameQuery()
+  const { isExpanded, handleAccordionToggle } = useAccordion()
 
   const onToggle = () => {
-    setDisplayRace((s) => !s)
+    handleAccordionToggle()
 
-    if (displayRace) return
+    if (isExpanded) return
     fetchRaces(id)
   }
 
@@ -60,9 +60,9 @@ export const ResultAccordion = ({
           ))}
           - {format(new Date(startTime), timeFormat)}
         </div>
-        <ExpandIcon isExpanded={displayRace} />
+        <ExpandIcon isExpanded={isExpanded} />
       </h3>
-      {displayRace && displayRaces()}
+      {isExpanded && displayRaces()}
     </div>
   )
 }
